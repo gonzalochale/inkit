@@ -1,42 +1,23 @@
-"use client";
-
-import { usePathname } from "next/navigation";
 import Link from "next/link";
-
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { Github, Twitter } from "lucide-react";
+import SideBarLinks from "@/components/side-bar-links";
 
 export default function SideBar() {
-  const pathname = usePathname();
   return (
-    <aside className="col-span-1 border-r container py-5 flex flex-col gap-5 justify-between">
+    <aside className="sticky top-0 h-screen col-span-1 border-r container py-5 flex flex-col gap-10 justify-between">
       <div className="flex flex-col gap-3">
-        <h1 className="text-2xl font-semibold flex gap-1 justify-center items-center">
-          InKit
-        </h1>
-        <p className="text-center text-base font-medium text-muted-foreground">
-          Free and Copy-Paste UI components generator
+        <Link href="/">
+          <h1 className="scroll-m-20 text-2xl font-semibold tracking-tight">
+            InKit
+          </h1>
+        </Link>
+        <p className="text-muted-foreground leading-7 text-balance">
+          Create Copy-Paste free Tailwind CSS components for your next project
         </p>
       </div>
-      <nav className="h-full flex flex-col gap-3 items-start">
-        <Link href="/auth" className="w-full">
-          <Button
-            variant="outline"
-            className={`w-full ${pathname === "/auth" ? `bg-border` : ``}`}
-          >
-            Auth
-          </Button>
-        </Link>
-        <Link href="/pricing" className="w-full">
-          <Button
-            variant="outline"
-            className={`w-full ${pathname === "/pricing" ? `bg-border` : ``}`}
-          >
-            Pricing
-          </Button>
-        </Link>
-      </nav>
+      <SideBarLinks />
       <div className="flex flex-wrap gap-3">
         <a
           href="https://github.com/gonzalochale/inkit"

@@ -1,3 +1,3 @@
-A beautiful auth library. Built with NextJS & ShadCN UI
+Create Copy-Paste free Tailwind CSS components for your next project
 
 ## Getting Started

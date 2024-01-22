@@ -8,7 +8,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "inKit",
-  description: "A toolkit for building auth components with Next.js",
+  description:
+    "Create Copy-Paste free Tailwind CSS components for your next project",
 };
 
 export default function RootLayout({
