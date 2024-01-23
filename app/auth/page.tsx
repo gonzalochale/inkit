@@ -92,7 +92,7 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="grid grid-cols-[300px_1fr]">
+    <main className="grid grid-cols-[300px_1fr] transitions">
       <aside className="container col-span-1 border-r flex flex-col gap-5 py-5">
         <Button
           size="sm"
