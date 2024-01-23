@@ -9,10 +9,11 @@ export default function SideBar() {
     <aside className="sticky top-0 h-screen col-span-1 border-r container py-5 flex flex-col gap-10 justify-between">
       <div className="flex flex-col gap-3">
         <div className="w-full flex justify-between items-center">
-          <Link href="/">
-            <h1 className="scroll-m-20 text-2xl font-semibold tracking-tight">
-              InKit
-            </h1>
+          <Link
+            href="/"
+            className="scroll-m-20 text-2xl font-semibold tracking-tight"
+          >
+            InKit
           </Link>
           <ThemeToggle />
         </div>
