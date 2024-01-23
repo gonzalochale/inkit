@@ -1,29 +1,27 @@
 "use client";
 
 import { createRef, useEffect, useState } from "react";
-import { cva, type VariantProps } from "class-variance-authority";
+import { cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
-import { Parser } from "html-to-react";
-
 import { toast } from "sonner";
-import { renderToStaticMarkup } from "react-dom/server";
+import { handleCopyHTML, handleCopyJSX } from "@/lib/handles";
 
 const loginVariants = cva(
-  "border border-gray-300 dark:border-zinc-700 flex flex-col gap-5 justify-center items-center p-4 bg-white dark:bg-black",
+  "bg-white dark:bg-black border border-gray-300 dark:border-zinc-700 flex flex-col gap-5 justify-center items-center p-4",
   {
     variants: {
       size: {
-        default: "w-[400px] h-auto",
-        sm: "w-[450px] h-auto",
-        lg: "w-[500px] h-auto",
+        default: "w-[350px] h-auto",
+        sm: "w-[400px] py-5 h-auto",
+        lg: "w-[500px] py-10 h-auto",
       },
       borderRadius: {
         none: "rounded-none",
-        sm: "rounded-sm",
-        lg: "rounded-lg",
-        xl: "rounded-xl",
+        sm: "rounded-md",
+        lg: "rounded-xl",
+        xl: "rounded-2xl",
       },
       shadow: {
         none: "shadow-none",
@@ -69,48 +67,26 @@ export default function LoginPage() {
     }
   }, [myRef]);
 
-  const handleCopy = () => {
+  const copyHTML = () => {
     setLoading(true);
-    try {
-      if (myRef.current) {
-        const htmlCode = myRef.current.innerHTML;
-        navigator.clipboard.writeText(htmlCode);
-        toast.success("Copied HTML to clipboard");
-      } else {
-        toast.error("Could not find HTML to copy");
-      }
+    const copy = handleCopyHTML(myRef.current);
+    if (copy.success) {
+      toast.success(copy.success);
       setLoading(false);
-    } catch (error) {
-      toast.error("Error copying HTML to clipboard");
+    } else {
+      toast.error(copy.error);
       setLoading(false);
     }
   };
 
-  const handleCopyJSX = () => {
+  const copyJSX = () => {
     setLoading(true);
-    try {
-      if (myRef.current) {
-        const HtmlToReactParser = require("html-to-react").Parser;
-        const htmlCode = myRef.current.innerHTML;
-        const htmlToReactParser = new HtmlToReactParser();
-        const reactComponent = htmlToReactParser.parse(htmlCode);
-        const jsxCode = renderToStaticMarkup(reactComponent);
-
-        const modifiedJSX = jsxCode
-          .replace(/\bclass\b/g, "className")
-          .replace(/\bfor\b/g, "htmlFor")
-          .replace(/\bstroke-width\b/g, "strokeWidth")
-          .replace(/\bstroke-linecap\b/g, "strokeLinecap")
-          .replace(/\bstroke-linejoin\b/g, "strokeLinejoin");
-
-        navigator.clipboard.writeText(modifiedJSX);
-        toast.success("Copied JSX code to clipboard");
-      } else {
-        toast.error("Could not find code to copy");
-      }
+    const copy = handleCopyJSX(myRef.current);
+    if (copy.success) {
+      toast.success(copy.success);
       setLoading(false);
-    } catch (error) {
-      toast.error("Error copying code to clipboard");
+    } else {
+      toast.error(copy.error);
       setLoading(false);
     }
   };
@@ -265,7 +241,7 @@ export default function LoginPage() {
               </button>
             </div>
           </form>
-          <span className="text-base font-normal text-center text-slate-600 dark:text-slate-200">
+          <span className="text-sm font-normal text-center text-slate-600 dark:text-slate-200">
             Or continue with
           </span>
           <div className="flex gap-3 w-full">
@@ -309,19 +285,20 @@ export default function LoginPage() {
             </button>
           </div>
         </div>
+        <div className="absolute inset-0 -z-10 h-full w-full bg-[linear-gradient(to_right,#262626_1px,transparent_1px),linear-gradient(to_bottom,#262626_1px,transparent_1px)] bg-[size:100px_100px] opacity-10 dark:opacity-50"></div>
       </section>
       <div className="absolute top-0 right-0 p-4 flex gap-3">
         <Button
           className="flex gap-1 justify-center items-center"
           disabled={loading}
-          onClick={handleCopyJSX}
+          onClick={copyJSX}
         >
           Copy JSX
         </Button>
         <Button
           className="flex gap-1 justify-center items-center"
           disabled={loading}
-          onClick={handleCopy}
+          onClick={copyHTML}
         >
           Copy HTML
         </Button>
