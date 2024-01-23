@@ -70,6 +70,7 @@
 
 .scroll::-webkit-scrollbar {
   width: 0.3rem;
+  
 }
 
 .scroll::-webkit-scrollbar-track {

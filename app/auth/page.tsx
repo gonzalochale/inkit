@@ -1,10 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { createRef, useEffect, useState } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
+import { Parser } from "html-to-react";
+
+import { toast } from "sonner";
+import { renderToStaticMarkup } from "react-dom/server";
 
 const loginVariants = cva(
   "border border-gray-300 dark:border-zinc-700 flex flex-col gap-5 justify-center items-center p-4 bg-white dark:bg-black",
@@ -16,43 +20,99 @@ const loginVariants = cva(
         lg: "w-[500px] h-auto",
       },
       borderRadius: {
-        default: "rounded-none",
+        none: "rounded-none",
         sm: "rounded-sm",
         lg: "rounded-lg",
         xl: "rounded-xl",
       },
       shadow: {
-        default: "shadow-none",
+        none: "shadow-none",
         md: "shadow-md",
       },
     },
     defaultVariants: {
       size: "default",
-      borderRadius: "default",
-      shadow: "default",
+      borderRadius: "none",
+      shadow: "none",
     },
   }
 );
 
 export default function LoginPage() {
-  const [size, setSize] = useState<"default" | "sm" | "lg" | null>("default");
-  const [borderRadius, setBorderRadius] = useState<null | "sm" | "lg" | "xl">(
-    null
+  const [loading, setLoading] = useState<boolean>(false);
+  const [size, setSize] = useState<"default" | "sm" | "lg">("default");
+  const [borderRadius, setBorderRadius] = useState<"none" | "sm" | "lg" | "xl">(
+    "none"
   );
-  const [shadow, setShadow] = useState<null | "md">(null);
+  const [shadow, setShadow] = useState<"none" | "md">("none");
 
   const handleSizeChange = (newSize: "default" | "sm" | "lg") => {
     setSize(newSize);
   };
 
   const handleBorderRadiusChange = (
-    newBorderRadius: null | "sm" | "lg" | "xl"
+    newBorderRadius: "none" | "sm" | "lg" | "xl"
   ) => {
     setBorderRadius(newBorderRadius);
   };
 
-  const handleShadowChange = (newShadow: null | "md") => {
+  const handleShadowChange = (newShadow: "none" | "md") => {
     setShadow(newShadow);
+  };
+
+  const myRef = createRef<HTMLDivElement>();
+  const [html, setHtml] = useState<string>("");
+
+  useEffect(() => {
+    if (myRef.current) {
+      setHtml(myRef.current.innerHTML);
+    }
+  }, [myRef]);
+
+  const handleCopy = () => {
+    setLoading(true);
+    try {
+      if (myRef.current) {
+        const htmlCode = myRef.current.innerHTML;
+        navigator.clipboard.writeText(htmlCode);
+        toast.success("Copied HTML to clipboard");
+      } else {
+        toast.error("Could not find HTML to copy");
+      }
+      setLoading(false);
+    } catch (error) {
+      toast.error("Error copying HTML to clipboard");
+      setLoading(false);
+    }
+  };
+
+  const handleCopyJSX = () => {
+    setLoading(true);
+    try {
+      if (myRef.current) {
+        const HtmlToReactParser = require("html-to-react").Parser;
+        const htmlCode = myRef.current.innerHTML;
+        const htmlToReactParser = new HtmlToReactParser();
+        const reactComponent = htmlToReactParser.parse(htmlCode);
+        const jsxCode = renderToStaticMarkup(reactComponent);
+
+        const modifiedJSX = jsxCode
+          .replace(/\bclass\b/g, "className")
+          .replace(/\bfor\b/g, "htmlFor")
+          .replace(/\bstroke-width\b/g, "strokeWidth")
+          .replace(/\bstroke-linecap\b/g, "strokeLinecap")
+          .replace(/\bstroke-linejoin\b/g, "strokeLinejoin");
+
+        navigator.clipboard.writeText(modifiedJSX);
+        toast.success("Copied JSX code to clipboard");
+      } else {
+        toast.error("Could not find code to copy");
+      }
+      setLoading(false);
+    } catch (error) {
+      toast.error("Error copying code to clipboard");
+      setLoading(false);
+    }
   };
 
   return (
@@ -62,8 +122,8 @@ export default function LoginPage() {
           size="sm"
           onClick={() => {
             setSize("default");
-            setBorderRadius(null);
-            setShadow(null);
+            setBorderRadius("none");
+            setShadow("none");
           }}
         >
           Reset
@@ -103,9 +163,9 @@ export default function LoginPage() {
             <Button
               size="icon"
               variant="outline"
-              onClick={() => handleBorderRadiusChange(null)}
+              onClick={() => handleBorderRadiusChange("none")}
               className={cn(
-                borderRadius === null ? "bg-accent" : "",
+                borderRadius === "none" ? "bg-accent" : "",
                 "rounded-none"
               )}
             >
@@ -152,13 +212,16 @@ export default function LoginPage() {
             checked={shadow === "md" ? true : false}
             onCheckedChange={
               shadow === "md"
-                ? () => handleShadowChange(null)
+                ? () => handleShadowChange("none")
                 : () => handleShadowChange("md")
             }
           />
         </div>
       </aside>
-      <section className="sticky top-0 flex justify-center items-center h-screen">
+      <section
+        ref={myRef}
+        className="sticky top-0 flex justify-center items-center h-screen"
+      >
         <div className={cn(loginVariants({ size, borderRadius, shadow }))}>
           <div className="flex flex-col gap-1 justify-center items-center">
             <span className="text-lg font-medium text-black dark:text-white">
@@ -170,7 +233,7 @@ export default function LoginPage() {
           </div>
           <form className="w-full flex flex-col gap-2">
             <label
-              htmlFor="text-input"
+              htmlFor="name"
               className="text-sm font-normal text-black dark:text-white"
             >
               Name
@@ -181,7 +244,7 @@ export default function LoginPage() {
               className={`h-10 text-sm px-2 border bg-white dark:bg-black rounded-${borderRadius}`}
             />
             <label
-              htmlFor="password-input"
+              htmlFor="password"
               className="text-sm font-normal text-black dark:text-white"
             >
               Password
@@ -247,6 +310,22 @@ export default function LoginPage() {
           </div>
         </div>
       </section>
+      <div className="absolute top-0 right-0 p-4 flex gap-3">
+        <Button
+          className="flex gap-1 justify-center items-center"
+          disabled={loading}
+          onClick={handleCopyJSX}
+        >
+          Copy JSX
+        </Button>
+        <Button
+          className="flex gap-1 justify-center items-center"
+          disabled={loading}
+          onClick={handleCopy}
+        >
+          Copy HTML
+        </Button>
+      </div>
     </main>
   );
 }
