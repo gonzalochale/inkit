@@ -70,7 +70,7 @@ export default function SideBarLinks() {
             variant="ghost"
             size="lg"
             className={`w-full justify-start ${
-              pathname === link.href ? "border" : ""
+              pathname === link.href ? "border bg-accent" : ""
             }`}
           >
             {link.label}

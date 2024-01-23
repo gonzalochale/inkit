@@ -7,9 +7,9 @@ import SideBar from "@/components/side-bar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "inKit",
+  title: "inKit - Beautiful components",
   description:
-    "Create Copy-Paste free Tailwind CSS components for your next project",
+    "Create free Copy-Paste Tailwind CSS components for your next project",
 };
 
 export default function RootLayout({
