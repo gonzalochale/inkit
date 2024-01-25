@@ -9,7 +9,7 @@ export default function Home() {
         Create UI components with ease
       </h1>
       <div className="flex gap-5">
-        <Link href="/auth">
+        <Link href="/pricing">
           <Button size="lg">Start Building</Button>
         </Link>
         <a

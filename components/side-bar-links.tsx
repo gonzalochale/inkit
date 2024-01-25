@@ -10,8 +10,12 @@ export default function SideBarLinks() {
 
   const links = [
     {
-      href: "/auth",
-      label: "Auth",
+      href: "/pricing",
+      label: "Pricing",
+    },
+    {
+      href: "/login",
+      label: "Login",
     },
   ];
   return (

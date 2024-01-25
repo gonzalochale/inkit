@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { toast } from "sonner";
 import { handleCopyHTML, handleCopyJSX } from "@/lib/handles";
+import { Input } from "@/components/ui/input";
 
 const loginVariants = cva(
   "bg-white dark:bg-black border border-gray-300 dark:border-zinc-700 flex flex-col gap-5 justify-center items-center p-4",
@@ -37,12 +38,18 @@ const loginVariants = cva(
 );
 
 export default function LoginPage() {
+  const myRef = createRef<HTMLDivElement>();
+  const [html, setHtml] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [size, setSize] = useState<"default" | "sm" | "lg">("default");
   const [borderRadius, setBorderRadius] = useState<"none" | "sm" | "lg" | "xl">(
     "none"
   );
   const [shadow, setShadow] = useState<"none" | "md">("none");
+  const [title, setTitle] = useState<string>("Welcome Back");
+  const [description, setDescription] = useState<string>(
+    "Enter your credentials below to access your account"
+  );
 
   const handleSizeChange = (newSize: "default" | "sm" | "lg") => {
     setSize(newSize);
@@ -57,9 +64,6 @@ export default function LoginPage() {
   const handleShadowChange = (newShadow: "none" | "md") => {
     setShadow(newShadow);
   };
-
-  const myRef = createRef<HTMLDivElement>();
-  const [html, setHtml] = useState<string>("");
 
   useEffect(() => {
     if (myRef.current) {
@@ -100,11 +104,15 @@ export default function LoginPage() {
             setSize("default");
             setBorderRadius("none");
             setShadow("none");
+            setTitle("Welcome Back");
+            setDescription(
+              "Enter your credentials below to access your account"
+            );
           }}
         >
           Reset
         </Button>
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-2">
           <span className="text-base font-medium text-foreground">Size</span>
           <Button
             size="sm"
@@ -131,7 +139,7 @@ export default function LoginPage() {
             Large
           </Button>
         </div>
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-2">
           <span className="text-base font-medium text-foreground">
             Border Radius
           </span>
@@ -144,9 +152,7 @@ export default function LoginPage() {
                 borderRadius === "none" ? "bg-accent" : "",
                 "rounded-none"
               )}
-            >
-              0
-            </Button>
+            ></Button>
             <Button
               size="icon"
               variant="outline"
@@ -155,9 +161,7 @@ export default function LoginPage() {
                 borderRadius === "sm" ? "bg-accent" : "",
                 "rounded-sm"
               )}
-            >
-              sm
-            </Button>
+            ></Button>
             <Button
               size="icon"
               variant="outline"
@@ -166,9 +170,7 @@ export default function LoginPage() {
                 borderRadius === "lg" ? "bg-accent" : "",
                 "rounded-lg"
               )}
-            >
-              lg
-            </Button>
+            ></Button>
             <Button
               size="icon"
               variant="outline"
@@ -177,12 +179,10 @@ export default function LoginPage() {
                 borderRadius === "xl" ? "bg-accent" : "",
                 "rounded-xl"
               )}
-            >
-              xl
-            </Button>
+            ></Button>
           </div>
         </div>
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-2">
           <span className="text-base font-medium text-foreground">Shadow</span>
           <Switch
             checked={shadow === "md" ? true : false}
@@ -193,6 +193,28 @@ export default function LoginPage() {
             }
           />
         </div>
+        <div className="flex flex-col gap-2">
+          <span className="text-base font-medium text-foreground">Title</span>
+          <Input
+            name="title"
+            type="text"
+            value={title}
+            maxLength={32}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+        </div>
+        <div className="flex flex-col gap-2">
+          <span className="text-base font-medium text-foreground">
+            Description
+          </span>
+          <Input
+            name="description"
+            type="text"
+            value={description}
+            maxLength={64}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+        </div>
       </aside>
       <section
         ref={myRef}
@@ -201,10 +223,10 @@ export default function LoginPage() {
         <div className={cn(loginVariants({ size, borderRadius, shadow }))}>
           <div className="flex flex-col gap-1 justify-center items-center">
             <span className="text-lg font-medium text-black dark:text-white">
-              Welcome Back
+              {title}
             </span>
             <p className="text-base font-normal text-center text-slate-600 dark:text-slate-200">
-              Enter your credentials below to access your account
+              {description}
             </p>
           </div>
           <form className="w-full flex flex-col gap-2">

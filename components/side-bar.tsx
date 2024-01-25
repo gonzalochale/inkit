@@ -28,11 +28,7 @@ export default function SideBar() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Button
-            size="sm"
-            variant="outline"
-            className="gap-1 justify-center items-center"
-          >
+          <Button size="sm" className="gap-1 justify-center items-center">
             <Star className="stroke-1 size-5" />
             Star
           </Button>
@@ -42,11 +38,7 @@ export default function SideBar() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Button
-            size="sm"
-            variant="outline"
-            className="gap-1 justify-center items-center"
-          >
+          <Button size="sm" className="gap-1 justify-center items-center">
             <Twitter className="stroke-1" />
             Made by Gonzalo
           </Button>
