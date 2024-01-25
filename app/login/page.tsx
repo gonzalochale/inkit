@@ -10,13 +10,13 @@ import { handleCopyHTML, handleCopyJSX } from "@/lib/handles";
 import { Input } from "@/components/ui/input";
 
 const loginVariants = cva(
-  "bg-white dark:bg-black border border-gray-300 dark:border-zinc-700 flex flex-col gap-5 justify-center items-center p-4",
+  "bg-white dark:bg-black border border-gray-300 dark:border-zinc-700 flex flex-col gap-5 justify-center items-center",
   {
     variants: {
       size: {
-        default: "w-[350px] h-auto",
-        sm: "w-[400px] py-5 h-auto",
-        lg: "w-[500px] py-10 h-auto",
+        default: "w-[350px] p-4 h-auto",
+        sm: "w-[400px] p-5 h-auto",
+        lg: "w-[500px] p-7 h-auto",
       },
       borderRadius: {
         none: "rounded-none",

@@ -14,9 +14,9 @@ const pricingVariants = cva(
   {
     variants: {
       size: {
-        default: "w-[200px] p-4 h-auto",
-        sm: "w-[225px] p-5 h-auto",
-        lg: "w-[250px] p-7 h-auto",
+        default: "w-[225px] p-5 h-auto",
+        sm: "w-[250px] p-6 h-auto",
+        lg: "w-[275px] p-7 h-auto",
       },
       borderRadius: {
         none: "rounded-none",
@@ -234,7 +234,7 @@ export default function PricingPage() {
         ref={myRef}
         className="sticky top-0 flex justify-center items-center h-screen overflow-hidden"
       >
-        <section className="relative flex flex-wrap gap-5 justify-center items-center">
+        <section className="relative flex flex-wrap gap-8 justify-center items-center">
           <div
             className={cn(
               pricingVariants({
@@ -243,11 +243,11 @@ export default function PricingPage() {
                 shadow,
               }),
               selectedPlan === "plana"
-                ? "scale-110 border-2 border-blue-700 dark:border-blue-700"
+                ? "scale-110 border-4 border-blue-700 dark:border-blue-700"
                 : ""
             )}
           >
-            <span className="text-lg font-medium text-black dark:text-white">
+            <span className="text-xl font-semibold text-black dark:text-white">
               Plan A
             </span>
             <p className="text-3xl font-normal text-center text-slate-600 dark:text-slate-200">
@@ -262,6 +262,12 @@ export default function PricingPage() {
               </li>
               <li className="text-sm text-black dark:text-white">
                 24/7 customer support.
+              </li>
+              <li className="text-sm text-black dark:text-white">
+                Free forever.
+              </li>
+              <li className="text-sm text-black dark:text-white">
+                No credit card required.
               </li>
             </ul>
             <button
@@ -278,11 +284,11 @@ export default function PricingPage() {
                 shadow,
               }),
               selectedPlan === "planb"
-                ? "scale-110 border-2 border-blue-700 dark:border-blue-700"
+                ? "scale-110 border-4 border-blue-700 dark:border-blue-700"
                 : ""
             )}
           >
-            <span className="text-lg font-medium text-black dark:text-white">
+            <span className="text-xl font-semibold text-black dark:text-white">
               Plan B
             </span>
             <p className="text-3xl font-normal text-center text-slate-600 dark:text-slate-200">
@@ -297,6 +303,12 @@ export default function PricingPage() {
               </li>
               <li className="text-sm text-black dark:text-white">
                 24/7 customer support.
+              </li>
+              <li className="text-sm text-black dark:text-white">
+                Free forever.
+              </li>
+              <li className="text-sm text-black dark:text-white">
+                No credit card required.
               </li>
             </ul>
             <button
@@ -313,11 +325,11 @@ export default function PricingPage() {
                 shadow,
               }),
               selectedPlan === "planc"
-                ? "scale-110 border-2 border-blue-700 dark:border-blue-700"
+                ? "scale-110 border-4 border-blue-700 dark:border-blue-700"
                 : ""
             )}
           >
-            <span className="text-lg font-medium text-black dark:text-white">
+            <span className="text-xl font-semibold text-black dark:text-white">
               Plan C
             </span>
             <p className="text-3xl font-normal text-center text-slate-600 dark:text-slate-200">
@@ -332,6 +344,12 @@ export default function PricingPage() {
               </li>
               <li className="text-sm text-black dark:text-white">
                 24/7 customer support.
+              </li>
+              <li className="text-sm text-black dark:text-white">
+                Free forever.
+              </li>
+              <li className="text-sm text-black dark:text-white">
+                No credit card required.
               </li>
             </ul>
             <button
