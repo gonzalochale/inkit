@@ -119,30 +119,32 @@ export default function PricingPage() {
         </Button>
         <div className="flex flex-col gap-2">
           <span className="text-base font-medium text-foreground">Size</span>
-          <Button
-            size="sm"
-            variant="outline"
-            onClick={() => handleSizeChange("default")}
-            className={cn(size === "default" && "bg-accent")}
-          >
-            Default
-          </Button>
-          <Button
-            size="sm"
-            variant="outline"
-            onClick={() => handleSizeChange("sm")}
-            className={cn(size === "sm" && "bg-accent")}
-          >
-            Medium
-          </Button>
-          <Button
-            size="sm"
-            variant="outline"
-            onClick={() => handleSizeChange("lg")}
-            className={cn(size === "lg" && "bg-accent")}
-          >
-            Large
-          </Button>
+          <div className="flex gap-3">
+            <Button
+              size="icon"
+              variant="outline"
+              onClick={() => handleSizeChange("default")}
+              className={cn(size === "default" && "bg-accent")}
+            >
+              MD
+            </Button>
+            <Button
+              size="icon"
+              variant="outline"
+              onClick={() => handleSizeChange("sm")}
+              className={cn(size === "sm" && "bg-accent")}
+            >
+              LG
+            </Button>
+            <Button
+              size="icon"
+              variant="outline"
+              onClick={() => handleSizeChange("lg")}
+              className={cn(size === "lg" && "bg-accent")}
+            >
+              XL
+            </Button>
+          </div>
         </div>
         <div className="flex flex-col gap-2">
           <span className="text-base font-medium text-foreground">

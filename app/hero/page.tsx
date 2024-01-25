@@ -34,8 +34,13 @@ export default function HeroPage() {
   const [html, setHtml] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [title, setTitle] = useState<"sm" | "lg" | "xl">("sm");
+  const [titleText, setTitleText] = useState("Start creating Apps");
   const [subtitle, setSubtitle] = useState<"sm" | "lg" | "xl">("sm");
+  const [subtitleText, setSubtitleText] = useState(
+    "Create your own components using InKit"
+  );
   const [badge, setBadge] = useState<"primary" | "secondary">("primary");
+  const [badgeText, setBadgeText] = useState("New components soon");
 
   useEffect(() => {
     if (myRef.current) {
@@ -74,13 +79,23 @@ export default function HeroPage() {
           size="sm"
           onClick={() => {
             setTitle("sm");
+            setTitleText("Start creating Apps");
+            setSubtitle("sm");
+            setSubtitleText("Create your own components using InKit");
             setBadge("primary");
+            setBadgeText("New components soon");
           }}
         >
           Reset
         </Button>
         <div className="flex flex-col gap-2">
           <span className="text-base font-medium text-foreground">Bagde</span>
+          <Input
+            type="text"
+            value={badgeText}
+            onChange={(e) => setBadgeText(e.target.value)}
+            maxLength={20}
+          />
           <Button
             size="sm"
             variant="outline"
@@ -100,35 +115,49 @@ export default function HeroPage() {
         </div>
         <div className="flex flex-col gap-2">
           <span className="text-base font-medium text-foreground">Title</span>
-          <Button
-            size="sm"
-            variant="outline"
-            onClick={() => setTitle("sm")}
-            className={cn(title === "sm" && "bg-accent")}
-          >
-            Medium
-          </Button>
-          <Button
-            size="sm"
-            variant="outline"
-            onClick={() => setTitle("lg")}
-            className={cn(title === "lg" && "bg-accent")}
-          >
-            SemiBold
-          </Button>
-          <Button
-            size="sm"
-            variant="outline"
-            onClick={() => setTitle("xl")}
-            className={cn(title === "xl" && "bg-accent")}
-          >
-            Bold
-          </Button>
+          <Input
+            type="text"
+            value={titleText}
+            onChange={(e) => setTitleText(e.target.value)}
+            maxLength={30}
+          />
+          <div className="flex gap-3">
+            <Button
+              size="icon"
+              variant="outline"
+              onClick={() => setTitle("sm")}
+              className={cn(title === "sm" && "bg-accent")}
+            >
+              MD
+            </Button>
+            <Button
+              size="icon"
+              variant="outline"
+              onClick={() => setTitle("lg")}
+              className={cn(title === "lg" && "bg-accent")}
+            >
+              LG
+            </Button>
+            <Button
+              size="icon"
+              variant="outline"
+              onClick={() => setTitle("xl")}
+              className={cn(title === "xl" && "bg-accent")}
+            >
+              XL
+            </Button>
+          </div>
         </div>
         <div className="flex flex-col gap-2">
           <span className="text-base font-medium text-foreground">
             Subtitle
           </span>
+          <Input
+            type="text"
+            value={subtitleText}
+            onChange={(e) => setSubtitleText(e.target.value)}
+            maxLength={64}
+          />
           <div className="flex gap-3">
             <Button
               size="icon"
@@ -136,7 +165,7 @@ export default function HeroPage() {
               onClick={() => setSubtitle("sm")}
               className={cn(subtitle === "sm" && "bg-accent")}
             >
-              md
+              MD
             </Button>
             <Button
               size="icon"
@@ -144,7 +173,7 @@ export default function HeroPage() {
               onClick={() => setSubtitle("lg")}
               className={cn(subtitle === "lg" && "bg-accent")}
             >
-              lg
+              LG
             </Button>
             <Button
               size="icon"
@@ -152,7 +181,7 @@ export default function HeroPage() {
               onClick={() => setSubtitle("xl")}
               className={cn(subtitle === "xl" && "bg-accent")}
             >
-              xl
+              XL
             </Button>
           </div>
         </div>
@@ -163,7 +192,7 @@ export default function HeroPage() {
       >
         <section className="relative px-4 w-full py-5 flex flex-col gap-3 justify-center items-center">
           <span className={cn(HeroVariants({ badge }))}>
-            New components soon{" "}
+            {badgeText}{" "}
             <svg
               width="24"
               height="24"
@@ -178,10 +207,8 @@ export default function HeroPage() {
               <path d="M16 18a2 2 0 0 1 2 2a2 2 0 0 1 2 -2a2 2 0 0 1 -2 -2a2 2 0 0 1 -2 2zm0 -12a2 2 0 0 1 2 2a2 2 0 0 1 2 -2a2 2 0 0 1 -2 -2a2 2 0 0 1 -2 2zm-7 12a6 6 0 0 1 6 -6a6 6 0 0 1 -6 -6a6 6 0 0 1 -6 6a6 6 0 0 1 6 6z" />
             </svg>
           </span>
-          <h1 className={cn(HeroVariants({ title }))}>Start creating Apps</h1>
-          <p className={cn(HeroVariants({ subtitle }))}>
-            Create your own components using InKit
-          </p>
+          <h1 className={cn(HeroVariants({ title }))}>{titleText}</h1>
+          <p className={cn(HeroVariants({ subtitle }))}>{subtitleText}</p>
           <div className="flex gap-3 py-3">
             <button className="px-4 py-2 h-10 w-auto bg-black dark:bg-white text-white dark:text-black rounded-md shadow-sm hover:bg-gray-700 dark:hover:bg-gray-300 transition-all duration-300 ease-in-out text-base font-medium">
               Get started
