@@ -10,13 +10,13 @@ import { handleCopyHTML, handleCopyJSX } from "@/lib/handles";
 import { Input } from "@/components/ui/input";
 
 const pricingVariants = cva(
-  "bg-white dark:bg-black border border-gray-300 dark:border-zinc-700 flex flex-col gap-5 justify-center items-center p-4",
+  "bg-white dark:bg-black border border-gray-300 dark:border-zinc-700 flex flex-col gap-5 justify-center items-center",
   {
     variants: {
       size: {
-        default: "w-[200px] py-2 h-auto",
-        sm: "w-[225px] py-5 h-auto",
-        lg: "w-[250px] py-5 h-auto",
+        default: "w-[200px] p-4 h-auto",
+        sm: "w-[225px] p-5 h-auto",
+        lg: "w-[250px] p-7 h-auto",
       },
       borderRadius: {
         none: "rounded-none",
@@ -267,7 +267,7 @@ export default function PricingPage() {
             <button
               className={`px-4 py-2 w-full text-sm font-medium text-white dark:text-white rounded-${borderRadius} bg-blue-700 dark:bg-blue-700 border-black dark:border-white hover:scale-105 hover:bg-black hover:dark:bg-white hover:dark:text-black`}
             >
-              Select
+              {selectedPlan === "plana" ? "Get Started" : "Select"}
             </button>
           </div>
           <div
@@ -302,7 +302,7 @@ export default function PricingPage() {
             <button
               className={`px-4 py-2 w-full text-sm font-medium text-white dark:text-white rounded-${borderRadius} bg-blue-700 dark:bg-blue-700 border-black dark:border-white hover:scale-105 hover:bg-black hover:dark:bg-white hover:dark:text-black`}
             >
-              Select
+              {selectedPlan === "planb" ? "Get Started" : "Select"}
             </button>
           </div>
           <div
@@ -318,7 +318,7 @@ export default function PricingPage() {
             )}
           >
             <span className="text-lg font-medium text-black dark:text-white">
-              Plan c
+              Plan C
             </span>
             <p className="text-3xl font-normal text-center text-slate-600 dark:text-slate-200">
               $19.99
@@ -337,7 +337,7 @@ export default function PricingPage() {
             <button
               className={`px-4 py-2 w-full text-sm font-medium text-white dark:text-white rounded-${borderRadius} bg-blue-700 dark:bg-blue-700 border-black dark:border-white hover:scale-105 hover:bg-black hover:dark:bg-white hover:dark:text-black`}
             >
-              Select
+              {selectedPlan === "planc" ? "Get Started" : "Select"}
             </button>
           </div>
         </section>
