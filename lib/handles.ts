@@ -28,7 +28,16 @@ export const handleCopyJSX = (ref: any) => {
         .replace(/\bfor\b/g, "htmlFor")
         .replace(/\bstroke-width\b/g, "strokeWidth")
         .replace(/\bstroke-linecap\b/g, "strokeLinecap")
-        .replace(/\bstroke-linejoin\b/g, "strokeLinejoin");
+        .replace(/\bstroke-linejoin\b/g, "strokeLinejoin")
+        .replace(/\bdisabled\b/g, "disabled={true}")
+        .replace(/\bchecked\b/g, "checked={true}")
+        .replace(/\breadonly\b/g, "readOnly={true}")
+        .replace(/\bautofocus\b/g, "autoFocus={true}")
+        .replace(/\bautocomplete\b/g, "autoComplete={true}")
+        .replace(/\btabindex\b/g, "tabIndex={0}")
+        .replace(/\bmaxlength\b/g, "maxLength={0}")
+        .replace(/\bminlength\b/g, "minLength={0}")
+        .replace(/\bhtmlfor\b/g, "htmlFor");
 
       navigator.clipboard.writeText(modifiedJSX);
       return { success: "JSX code copied to clipboard" };
