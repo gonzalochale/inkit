@@ -16,7 +16,7 @@ export default function MobileNav() {
   return (
     <div className="lg:hidden py-5 h-20 bg-background container border-b flex justify-start items-center">
       <Sheet>
-        <SheetTrigger>
+        <SheetTrigger asChild>
           <Button size="icon" variant="ghost">
             <Menu className="stroke-1" />
           </Button>
