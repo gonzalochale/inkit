@@ -6,7 +6,7 @@ import SideBarLinks from "@/components/side-bar-links";
 
 export default function SideBar() {
   return (
-    <aside className="sticky top-0 h-screen col-span-1 border-r container py-5 flex flex-col gap-10 justify-between">
+    <aside className="bg-background sticky max-lg:hidden top-0 h-screen col-span-1 border-r container py-5 flex flex-col gap-10 justify-between">
       <div className="flex flex-col gap-3">
         <div className="w-full flex justify-between items-center">
           <Link

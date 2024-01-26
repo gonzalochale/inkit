@@ -73,116 +73,122 @@ export default function HeroPage() {
   };
 
   return (
-    <main className="grid grid-cols-[300px_1fr] transitions">
-      <aside className="container col-span-1 border-r flex flex-col gap-5 py-5">
-        <Button
-          size="sm"
-          onClick={() => {
-            setTitle("sm");
-            setTitleText("Start creating Apps");
-            setSubtitle("sm");
-            setSubtitleText("Create your own components using InKit");
-            setBadge("primary");
-            setBadgeText("New components soon");
-          }}
-        >
-          Reset
-        </Button>
-        <div className="flex flex-col gap-2">
-          <span className="text-base font-medium text-foreground">Bagde</span>
-          <Input
-            type="text"
-            value={badgeText}
-            onChange={(e) => setBadgeText(e.target.value)}
-            maxLength={20}
-          />
+    <main className="grid grid-cols-1 lg:grid-cols-[300px_1fr] transitions">
+      <aside className="container col-span-1 max-lg:border-b lg:border-r flex flex-col gap-5 py-5">
+        <div className="flex justify-start items-start py-5 gap-10 overflow-x-auto scroll lg:gap-5 lg:flex-col">
           <Button
+            className="w-full"
             size="sm"
-            variant="outline"
-            onClick={() => setBadge("primary")}
-            className={cn(badge === "primary" && "bg-accent")}
+            onClick={() => {
+              setTitle("sm");
+              setTitleText("Start creating Apps");
+              setSubtitle("sm");
+              setSubtitleText("Create your own components using InKit");
+              setBadge("primary");
+              setBadgeText("New components soon");
+            }}
           >
-            Primary
+            Reset
           </Button>
-          <Button
-            size="sm"
-            variant="outline"
-            onClick={() => setBadge("secondary")}
-            className={cn(badge === "secondary" && "bg-accent")}
-          >
-            Secondary
-          </Button>
-        </div>
-        <div className="flex flex-col gap-2">
-          <span className="text-base font-medium text-foreground">Title</span>
-          <Input
-            type="text"
-            value={titleText}
-            onChange={(e) => setTitleText(e.target.value)}
-            maxLength={30}
-          />
-          <div className="flex gap-3">
+          <div className="flex flex-col gap-3">
+            <span className="text-base font-medium text-foreground">Bagde</span>
+            <Input
+              className="max-lg:min-w-[300px]"
+              type="text"
+              value={badgeText}
+              onChange={(e) => setBadgeText(e.target.value)}
+              maxLength={20}
+            />
             <Button
-              size="icon"
+              size="sm"
               variant="outline"
-              onClick={() => setTitle("sm")}
-              className={cn(title === "sm" && "bg-accent")}
+              onClick={() => setBadge("primary")}
+              className={cn(badge === "primary" && "bg-accent")}
             >
-              MD
+              Primary
             </Button>
             <Button
-              size="icon"
+              size="sm"
               variant="outline"
-              onClick={() => setTitle("lg")}
-              className={cn(title === "lg" && "bg-accent")}
+              onClick={() => setBadge("secondary")}
+              className={cn(badge === "secondary" && "bg-accent")}
             >
-              LG
-            </Button>
-            <Button
-              size="icon"
-              variant="outline"
-              onClick={() => setTitle("xl")}
-              className={cn(title === "xl" && "bg-accent")}
-            >
-              XL
+              Secondary
             </Button>
           </div>
-        </div>
-        <div className="flex flex-col gap-2">
-          <span className="text-base font-medium text-foreground">
-            Subtitle
-          </span>
-          <Input
-            type="text"
-            value={subtitleText}
-            onChange={(e) => setSubtitleText(e.target.value)}
-            maxLength={64}
-          />
-          <div className="flex gap-3">
-            <Button
-              size="icon"
-              variant="outline"
-              onClick={() => setSubtitle("sm")}
-              className={cn(subtitle === "sm" && "bg-accent")}
-            >
-              MD
-            </Button>
-            <Button
-              size="icon"
-              variant="outline"
-              onClick={() => setSubtitle("lg")}
-              className={cn(subtitle === "lg" && "bg-accent")}
-            >
-              LG
-            </Button>
-            <Button
-              size="icon"
-              variant="outline"
-              onClick={() => setSubtitle("xl")}
-              className={cn(subtitle === "xl" && "bg-accent")}
-            >
-              XL
-            </Button>
+          <div className="flex flex-col gap-3">
+            <span className="text-base font-medium text-foreground">Title</span>
+            <Input
+              className="max-lg:min-w-[300px]"
+              type="text"
+              value={titleText}
+              onChange={(e) => setTitleText(e.target.value)}
+              maxLength={30}
+            />
+            <div className="flex gap-3">
+              <Button
+                size="icon"
+                variant="outline"
+                onClick={() => setTitle("sm")}
+                className={cn(title === "sm" && "bg-accent")}
+              >
+                MD
+              </Button>
+              <Button
+                size="icon"
+                variant="outline"
+                onClick={() => setTitle("lg")}
+                className={cn(title === "lg" && "bg-accent")}
+              >
+                LG
+              </Button>
+              <Button
+                size="icon"
+                variant="outline"
+                onClick={() => setTitle("xl")}
+                className={cn(title === "xl" && "bg-accent")}
+              >
+                XL
+              </Button>
+            </div>
+          </div>
+          <div className="flex flex-col gap-3">
+            <span className="text-base font-medium text-foreground">
+              Subtitle
+            </span>
+            <Input
+              className="max-lg:min-w-[300px]"
+              type="text"
+              value={subtitleText}
+              onChange={(e) => setSubtitleText(e.target.value)}
+              maxLength={64}
+            />
+            <div className="flex gap-3">
+              <Button
+                size="icon"
+                variant="outline"
+                onClick={() => setSubtitle("sm")}
+                className={cn(subtitle === "sm" && "bg-accent")}
+              >
+                MD
+              </Button>
+              <Button
+                size="icon"
+                variant="outline"
+                onClick={() => setSubtitle("lg")}
+                className={cn(subtitle === "lg" && "bg-accent")}
+              >
+                LG
+              </Button>
+              <Button
+                size="icon"
+                variant="outline"
+                onClick={() => setSubtitle("xl")}
+                className={cn(subtitle === "xl" && "bg-accent")}
+              >
+                XL
+              </Button>
+            </div>
           </div>
         </div>
       </aside>
@@ -220,7 +226,7 @@ export default function HeroPage() {
         </section>
         <div className="absolute inset-0 -z-10 h-full w-full bg-[linear-gradient(to_right,#262626_1px,transparent_1px),linear-gradient(to_bottom,#262626_1px,transparent_1px)] bg-[size:100px_100px] opacity-10 dark:opacity-50"></div>
       </section>
-      <div className="absolute top-0 right-0 p-4 flex gap-3">
+      <div className="absolute top-0 right-0 px-4 py-5 flex gap-3">
         <Button
           className="flex gap-1 justify-center items-center"
           disabled={loading}

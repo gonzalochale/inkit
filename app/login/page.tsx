@@ -96,126 +96,133 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="grid grid-cols-[300px_1fr] transitions">
-      <aside className="container col-span-1 border-r flex flex-col gap-5 py-5">
-        <Button
-          size="sm"
-          onClick={() => {
-            setSize("default");
-            setBorderRadius("none");
-            setShadow("none");
-            setTitle("Welcome Back");
-            setDescription(
-              "Enter your credentials below to access your account"
-            );
-          }}
-        >
-          Reset
-        </Button>
-        <div className="flex flex-col gap-2">
-          <span className="text-base font-medium text-foreground">Size</span>
-          <div className="flex gap-3">
-            <Button
-              size="icon"
-              variant="outline"
-              onClick={() => handleSizeChange("default")}
-              className={cn(size === "default" && "bg-accent")}
-            >
-              MD
-            </Button>
-            <Button
-              size="icon"
-              variant="outline"
-              onClick={() => handleSizeChange("sm")}
-              className={cn(size === "sm" && "bg-accent")}
-            >
-              LG
-            </Button>
-            <Button
-              size="icon"
-              variant="outline"
-              onClick={() => handleSizeChange("lg")}
-              className={cn(size === "lg" && "bg-accent")}
-            >
-              XL
-            </Button>
+    <main className="grid grid-cols-1 lg:grid-cols-[300px_1fr] transitions">
+      <aside className="container col-span-1 max-lg:border-b lg:border-r flex flex-col gap-5 py-5">
+        <div className="flex justify-start items-start py-5 gap-10 overflow-x-auto scroll lg:gap-5 lg:flex-col">
+          <Button
+            size="sm"
+            className="w-full"
+            onClick={() => {
+              setSize("default");
+              setBorderRadius("none");
+              setShadow("none");
+              setTitle("Welcome Back");
+              setDescription(
+                "Enter your credentials below to access your account"
+              );
+            }}
+          >
+            Reset
+          </Button>
+          <div className="flex flex-col gap-3">
+            <span className="text-base font-medium text-foreground">Size</span>
+            <div className="flex gap-3">
+              <Button
+                size="icon"
+                variant="outline"
+                onClick={() => handleSizeChange("default")}
+                className={cn(size === "default" && "bg-accent")}
+              >
+                MD
+              </Button>
+              <Button
+                size="icon"
+                variant="outline"
+                onClick={() => handleSizeChange("sm")}
+                className={cn(size === "sm" && "bg-accent")}
+              >
+                LG
+              </Button>
+              <Button
+                size="icon"
+                variant="outline"
+                onClick={() => handleSizeChange("lg")}
+                className={cn(size === "lg" && "bg-accent")}
+              >
+                XL
+              </Button>
+            </div>
           </div>
-        </div>
-        <div className="flex flex-col gap-2">
-          <span className="text-base font-medium text-foreground">
-            Border Radius
-          </span>
-          <div className="flex gap-3">
-            <Button
-              size="icon"
-              variant="outline"
-              onClick={() => handleBorderRadiusChange("none")}
-              className={cn(
-                borderRadius === "none" ? "bg-accent" : "",
-                "rounded-none"
-              )}
-            ></Button>
-            <Button
-              size="icon"
-              variant="outline"
-              onClick={() => handleBorderRadiusChange("sm")}
-              className={cn(
-                borderRadius === "sm" ? "bg-accent" : "",
-                "rounded-sm"
-              )}
-            ></Button>
-            <Button
-              size="icon"
-              variant="outline"
-              onClick={() => handleBorderRadiusChange("lg")}
-              className={cn(
-                borderRadius === "lg" ? "bg-accent" : "",
-                "rounded-lg"
-              )}
-            ></Button>
-            <Button
-              size="icon"
-              variant="outline"
-              onClick={() => handleBorderRadiusChange("xl")}
-              className={cn(
-                borderRadius === "xl" ? "bg-accent" : "",
-                "rounded-xl"
-              )}
-            ></Button>
+          <div className="flex flex-col gap-3">
+            <span className="text-base font-medium text-foreground">
+              Border Radius
+            </span>
+            <div className="flex gap-3">
+              <Button
+                size="icon"
+                variant="outline"
+                onClick={() => handleBorderRadiusChange("none")}
+                className={cn(
+                  borderRadius === "none" ? "bg-accent" : "",
+                  "rounded-none"
+                )}
+              ></Button>
+              <Button
+                size="icon"
+                variant="outline"
+                onClick={() => handleBorderRadiusChange("sm")}
+                className={cn(
+                  borderRadius === "sm" ? "bg-accent" : "",
+                  "rounded-sm"
+                )}
+              ></Button>
+              <Button
+                size="icon"
+                variant="outline"
+                onClick={() => handleBorderRadiusChange("lg")}
+                className={cn(
+                  borderRadius === "lg" ? "bg-accent" : "",
+                  "rounded-lg"
+                )}
+              ></Button>
+              <Button
+                size="icon"
+                variant="outline"
+                onClick={() => handleBorderRadiusChange("xl")}
+                className={cn(
+                  borderRadius === "xl" ? "bg-accent" : "",
+                  "rounded-xl"
+                )}
+              ></Button>
+            </div>
           </div>
-        </div>
-        <div className="flex flex-col gap-2">
-          <span className="text-base font-medium text-foreground">Shadow</span>
-          <Switch
-            checked={shadow === "md" ? true : false}
-            onCheckedChange={
-              shadow === "md"
-                ? () => handleShadowChange("none")
-                : () => handleShadowChange("md")
-            }
-          />
-        </div>
-        <div className="flex flex-col gap-2">
-          <span className="text-base font-medium text-foreground">Title</span>
-          <Input
-            name="title"
-            type="text"
-            value={title}
-            maxLength={32}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-        </div>
-        <div className="flex flex-col gap-2">
-          <span className="text-base font-medium text-foreground">
-            Description
-          </span>
-          <Input
-            name="description"
-            type="text"
-            value={description}
-            maxLength={64}
-            onChange={(e) => setDescription(e.target.value)}
-          />
+          <div className="flex flex-col gap-3">
+            <span className="text-base font-medium text-foreground">
+              Shadow
+            </span>
+            <Switch
+              checked={shadow === "md" ? true : false}
+              onCheckedChange={
+                shadow === "md"
+                  ? () => handleShadowChange("none")
+                  : () => handleShadowChange("md")
+              }
+            />
+          </div>
+          <div className="flex flex-col gap-3">
+            <span className="text-base font-medium text-foreground">Title</span>
+            <Input
+              className="max-lg:min-w-[300px]"
+              name="title"
+              type="text"
+              value={title}
+              maxLength={32}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+          </div>
+          <div className="flex flex-col gap-3">
+            <span className="text-base font-medium text-foreground">
+              Description
+            </span>
+            <Input
+              className="max-lg:min-w-[300px]"
+              name="description"
+              type="text"
+              value={description}
+              maxLength={64}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </div>
         </div>
       </aside>
       <section
@@ -311,7 +318,7 @@ export default function LoginPage() {
         </div>
         <div className="absolute inset-0 -z-10 h-full w-full bg-[linear-gradient(to_right,#262626_1px,transparent_1px),linear-gradient(to_bottom,#262626_1px,transparent_1px)] bg-[size:100px_100px] opacity-10 dark:opacity-50"></div>
       </section>
-      <div className="absolute top-0 right-0 p-4 flex gap-3">
+      <div className="absolute top-0 right-0 px-4 py-5 flex gap-3">
         <Button
           className="flex gap-1 justify-center items-center"
           disabled={loading}

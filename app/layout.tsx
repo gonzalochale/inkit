@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import SideBar from "@/components/side-bar";
 import { Toaster } from "@/components/ui/sonner";
 import { Analytics } from "@vercel/analytics/react";
+import MobileNav from "@/components/mobile-nav";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,8 +29,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="min-h-screen w-full grid grid-cols-[300px_1fr]">
+          <div className="min-h-screen w-full grid grid-cols-1 lg:grid-cols-[300px_1fr]">
             <SideBar />
+            <MobileNav />
             {children}
           </div>
           <Toaster />

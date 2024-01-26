@@ -104,137 +104,142 @@ export default function PricingPage() {
   };
 
   return (
-    <main className="grid grid-cols-[300px_1fr] transitions">
-      <aside className="container col-span-1 border-r flex flex-col gap-5 py-5">
-        <Button
-          size="sm"
-          onClick={() => {
-            setSize("default");
-            setBorderRadius("none");
-            setShadow("none");
-            setSelectedPlan("planb");
-          }}
-        >
-          Reset
-        </Button>
-        <div className="flex flex-col gap-2">
-          <span className="text-base font-medium text-foreground">Size</span>
-          <div className="flex gap-3">
-            <Button
-              size="icon"
-              variant="outline"
-              onClick={() => handleSizeChange("default")}
-              className={cn(size === "default" && "bg-accent")}
-            >
-              MD
-            </Button>
-            <Button
-              size="icon"
-              variant="outline"
-              onClick={() => handleSizeChange("sm")}
-              className={cn(size === "sm" && "bg-accent")}
-            >
-              LG
-            </Button>
-            <Button
-              size="icon"
-              variant="outline"
-              onClick={() => handleSizeChange("lg")}
-              className={cn(size === "lg" && "bg-accent")}
-            >
-              XL
-            </Button>
+    <main className="grid grid-cols-1 lg:grid-cols-[300px_1fr] transitions">
+      <aside className="container col-span-1 max-lg:border-b lg:border-r flex flex-col gap-5 py-5">
+        <div className="flex justify-start items-start py-5 gap-10 overflow-x-auto scroll lg:gap-5 lg:flex-col">
+          <Button
+            size="sm"
+            className="w-full"
+            onClick={() => {
+              setSize("default");
+              setBorderRadius("none");
+              setShadow("none");
+              setSelectedPlan("planb");
+            }}
+          >
+            Reset
+          </Button>
+          <div className="flex flex-col gap-3">
+            <span className="text-base font-medium text-foreground">Size</span>
+            <div className="flex gap-3">
+              <Button
+                size="icon"
+                variant="outline"
+                onClick={() => handleSizeChange("default")}
+                className={cn(size === "default" && "bg-accent")}
+              >
+                MD
+              </Button>
+              <Button
+                size="icon"
+                variant="outline"
+                onClick={() => handleSizeChange("sm")}
+                className={cn(size === "sm" && "bg-accent")}
+              >
+                LG
+              </Button>
+              <Button
+                size="icon"
+                variant="outline"
+                onClick={() => handleSizeChange("lg")}
+                className={cn(size === "lg" && "bg-accent")}
+              >
+                XL
+              </Button>
+            </div>
           </div>
-        </div>
-        <div className="flex flex-col gap-2">
-          <span className="text-base font-medium text-foreground">
-            Border Radius
-          </span>
-          <div className="flex justify-between">
-            <Button
-              size="icon"
-              variant="outline"
-              onClick={() => handleBorderRadiusChange("none")}
-              className={cn(
-                borderRadius === "none" ? "bg-accent" : "",
-                "rounded-none"
-              )}
-            ></Button>
-            <Button
-              size="icon"
-              variant="outline"
-              onClick={() => handleBorderRadiusChange("sm")}
-              className={cn(
-                borderRadius === "sm" ? "bg-accent" : "",
-                "rounded-sm"
-              )}
-            ></Button>
-            <Button
-              size="icon"
-              variant="outline"
-              onClick={() => handleBorderRadiusChange("lg")}
-              className={cn(
-                borderRadius === "lg" ? "bg-accent" : "",
-                "rounded-lg"
-              )}
-            ></Button>
-            <Button
-              size="icon"
-              variant="outline"
-              onClick={() => handleBorderRadiusChange("xl")}
-              className={cn(
-                borderRadius === "xl" ? "bg-accent" : "",
-                "rounded-xl"
-              )}
-            ></Button>
+          <div className="flex flex-col gap-3">
+            <span className="text-base font-medium text-foreground">
+              Border Radius
+            </span>
+            <div className="flex justify-start items-center gap-3">
+              <Button
+                size="icon"
+                variant="outline"
+                onClick={() => handleBorderRadiusChange("none")}
+                className={cn(
+                  borderRadius === "none" ? "bg-accent" : "",
+                  "rounded-none"
+                )}
+              ></Button>
+              <Button
+                size="icon"
+                variant="outline"
+                onClick={() => handleBorderRadiusChange("sm")}
+                className={cn(
+                  borderRadius === "sm" ? "bg-accent" : "",
+                  "rounded-sm"
+                )}
+              ></Button>
+              <Button
+                size="icon"
+                variant="outline"
+                onClick={() => handleBorderRadiusChange("lg")}
+                className={cn(
+                  borderRadius === "lg" ? "bg-accent" : "",
+                  "rounded-lg"
+                )}
+              ></Button>
+              <Button
+                size="icon"
+                variant="outline"
+                onClick={() => handleBorderRadiusChange("xl")}
+                className={cn(
+                  borderRadius === "xl" ? "bg-accent" : "",
+                  "rounded-xl"
+                )}
+              ></Button>
+            </div>
           </div>
-        </div>
-        <div className="flex flex-col gap-2">
-          <span className="text-base font-medium text-foreground">Shadow</span>
-          <Switch
-            checked={shadow === "md" ? true : false}
-            onCheckedChange={
-              shadow === "md"
-                ? () => handleShadowChange("none")
-                : () => handleShadowChange("md")
-            }
-          />
-        </div>
-        <div className="flex flex-col gap-2">
-          <span className="text-base font-medium text-foreground">
-            Best Plan
-          </span>{" "}
-          <div className="flex justify-start gap-3">
-            <Button
-              size="icon"
-              variant="outline"
-              onClick={() => handlePlanChange("plana")}
-              className={cn(selectedPlan === "plana" ? "bg-accent" : "")}
-            >
-              A
-            </Button>
-            <Button
-              size="icon"
-              variant="outline"
-              onClick={() => handlePlanChange("planb")}
-              className={cn(selectedPlan === "planb" ? "bg-accent" : "")}
-            >
-              B
-            </Button>
-            <Button
-              size="icon"
-              variant="outline"
-              onClick={() => handlePlanChange("planc")}
-              className={cn(selectedPlan === "planc" ? "bg-accent" : "")}
-            >
-              C
-            </Button>
+          <div className="flex flex-col gap-3">
+            <span className="text-base font-medium text-foreground">
+              Shadow
+            </span>
+            <Switch
+              checked={shadow === "md" ? true : false}
+              onCheckedChange={
+                shadow === "md"
+                  ? () => handleShadowChange("none")
+                  : () => handleShadowChange("md")
+              }
+            />
+          </div>
+          <div className="flex flex-col gap-3">
+            <span className="text-base font-medium text-foreground">
+              Best Plan
+            </span>{" "}
+            <div className="flex justify-start gap-3">
+              <Button
+                size="icon"
+                variant="outline"
+                onClick={() => handlePlanChange("plana")}
+                className={cn(selectedPlan === "plana" ? "bg-accent" : "")}
+              >
+                A
+              </Button>
+              <Button
+                size="icon"
+                variant="outline"
+                onClick={() => handlePlanChange("planb")}
+                className={cn(selectedPlan === "planb" ? "bg-accent" : "")}
+              >
+                B
+              </Button>
+              <Button
+                size="icon"
+                variant="outline"
+                onClick={() => handlePlanChange("planc")}
+                className={cn(selectedPlan === "planc" ? "bg-accent" : "")}
+              >
+                C
+              </Button>
+            </div>
           </div>
         </div>
       </aside>
       <section
         ref={myRef}
-        className="sticky top-0 flex justify-center items-center h-screen overflow-hidden"
+        className="relative px-4 py-5 lg:sticky lg:top-0 flex justify-center items-center min-h-screen"
       >
         <section className="relative flex flex-wrap gap-8 justify-center items-center">
           <div
@@ -363,7 +368,7 @@ export default function PricingPage() {
         </section>
         <div className="absolute inset-0 -z-10 h-full w-full bg-[linear-gradient(to_right,#262626_1px,transparent_1px),linear-gradient(to_bottom,#262626_1px,transparent_1px)] bg-[size:100px_100px] opacity-10 dark:opacity-50"></div>
       </section>
-      <div className="absolute top-0 right-0 p-4 flex gap-3">
+      <div className="absolute top-0 right-0 px-4 py-5 flex gap-3">
         <Button
           className="flex gap-1 justify-center items-center"
           disabled={loading}

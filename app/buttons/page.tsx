@@ -31,9 +31,8 @@ export default function ButtonsPage() {
       toast.error(copy.error);
     }
   };
-
   return (
-    <main className="relative p-4 size-full">
+    <main className="p-4 size-full">
       <section className="size-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 place-content-start gap-10 transitions">
         {buttons.map((button, index) => {
           return (
